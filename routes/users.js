@@ -3,6 +3,7 @@ const bodyParser = require('koa-bodyparser')
 const model = require('../models/usersModel')
 const auth = require('../controllers/auth')
 const can = require('../permissions/usersPermission')
+const {validateUser} = require('../controllers/validation')
 
 const prefix = '/api/v1/users'
 const router = Router({ prefix: prefix });
@@ -10,7 +11,7 @@ const router = Router({ prefix: prefix });
 // /
 //router.get('/', auth, getAll)
 router.get('/', auth, getAllUsers)
-router.post('/', bodyParser(), createUser)
+router.post('/', bodyParser(), validateUser, createUser)
 // /id
 router.get('/:id([0-9]{1,})', auth, getUserById)
 router.del('/:id([0-9]{1,})', auth, deleteUserById)

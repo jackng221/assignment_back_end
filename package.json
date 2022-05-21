@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jackng221/assignment_back_end#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "jsonschema": "^1.4.1",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-passport": "^4.1.4",
