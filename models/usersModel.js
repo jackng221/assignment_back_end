@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt')
 exports.createUser = async function createUser(user) {
   let keys = Object.keys(user)
   let values = Object.values(user)
+  let signupcode = "secretsignupcode"
+  let role = "user"
 
   let parm = ''
   for (i = 0; i < values.length; i++) {
@@ -12,10 +14,16 @@ exports.createUser = async function createUser(user) {
         values[i] = await bcrypt.hash(values[i], 10)
       console.log(`${i}  ${values[i]}`)
     }
+    if (keys[i].valueOf() === "signupcode"){
+      if (values[i].valueOf() === signupcode){
+        role = "staff"
+      }
+    }
   }
-  console.log(values)
   keys = keys.join(',')
-  parm = parm.slice(0, -1)
+  keys += ",role"
+  parm += '?'
+  values.push(role)
 
   let sql = `INSERT INTO users (${keys}) VALUES (${parm})`
   try {

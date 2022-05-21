@@ -13,7 +13,7 @@ function publicAPI(ctx) {
 
 function privateAPI(ctx) {
   const user = ctx.state.user;
-  ctx.body = {message: `Hello ${user.username} you registered on ${user.dateregistered}`} 
+  ctx.body = {message: `Hello ${user.username}`} 
 }
 
 module.exports = router;

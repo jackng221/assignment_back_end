@@ -8,7 +8,6 @@ exports.createDogEntry = async function createDogEntry (dog) {
   let parm = ''
   for(i=0; i<values.length; i++){ parm +='?,'}
   parm=parm.slice(0,-1)
-  
   let sql = `INSERT INTO dogs (${keys}) VALUES (${parm})`
   try{
     await db.run_create(sql, values)  
