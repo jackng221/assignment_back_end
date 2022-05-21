@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/jackng221/assignment_back_end#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
+    "koa-passport": "^4.1.4",
     "koa-router": "^10.1.1",
+    "passport-http": "^0.3.0",
     "pg": "^8.7.3",
     "sequelize": "^6.19.2"
   }

@@ -14,54 +14,54 @@ router.put('/:id([0-9]{1,})', bodyParser(), updateDogEntry)
 router.del('/:id([0-9]{1,})', deleteDogEntry)
 
 
-async function createDogEntry(cnx) {
-  const newDogEntry = cnx.request.body;
+async function createDogEntry(ctx) {
+  const newDogEntry = ctx.request.body;
   console.log(newDogEntry)
   let result = await model.createDogEntry(newDogEntry)
   if (result) {
-    cnx.status = 201
-    cnx.body = result
+    ctx.status = 201
+    ctx.body = result
   }
 }
 
-async function getAllDogs(cnx) {
+async function getAllDogs(ctx) {
   let result = await model.getAllDogs()
   if (result) {
-    cnx.status = 201
-    cnx.body = result
+    ctx.status = 201
+    ctx.body = result
   }
   else {
-    cnx.status = 404
+    ctx.status = 404
   }
 }
 
-async function getDogEntry(cnx) {
-  let id = cnx.params.id
+async function getDogEntry(ctx) {
+  let id = ctx.params.id
   let result = await model.getDogById(id)
   if (result) {
-    cnx.status = 201
-    cnx.body = result
+    ctx.status = 201
+    ctx.body = result
   }
   else {
-    cnx.status = 404
+    ctx.status = 404
   }
 }
-async function updateDogEntry(cnx) {
-  const newDogEntry = cnx.request.body
-  let id = cnx.params.id
+async function updateDogEntry(ctx) {
+  const newDogEntry = ctx.request.body
+  let id = ctx.params.id
   let result = await model.updateDogById(newDogEntry, id)
   if (result) {
-    cnx.status = 200
-    cnx.body = `Dog with id ${id} updated`
+    ctx.status = 200
+    ctx.body = `Dog with id ${id} updated`
   }
 }
 
-async function deleteDogEntry(cnx) {
-  let id = cnx.params.id
+async function deleteDogEntry(ctx) {
+  let id = ctx.params.id
   let result = await model.deleteDogById(id)
   if (result) {
-    cnx.status = 200
-    cnx.body = `Dog with id ${id} deleted`
+    ctx.status = 200
+    ctx.body = `Dog with id ${id} deleted`
   }
 }
 
