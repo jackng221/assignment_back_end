@@ -75,7 +75,7 @@ async function deleteUserById(ctx) {
     let result = await model.deleteUserById(id)
     if (result) {
       ctx.status = 201
-      ctx.body = `Deleted user with id ${id}`
+      ctx.body = {message: `Deleted user with id ${id}`}
     }
   }
 }

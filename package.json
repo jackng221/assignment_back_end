@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jackng221/assignment_back_end#readme",
   "dependencies": {
+    "@koa/cors": "^3.3.0",
     "bcrypt": "^5.0.1",
     "jsonschema": "^1.4.1",
     "koa": "^2.13.4",

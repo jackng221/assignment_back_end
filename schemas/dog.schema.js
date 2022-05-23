@@ -11,12 +11,12 @@ module.exports = {
     },
     "age": {
       "description": "Age of the dog",
-      "type": "integer",
+      "type": "number",
       "minimum": 0
     },
     "weight": {
       "description": "Weight of the dog",
-      "type": "double",
+      "type": "number",
       "minimum": 0
     },
     "sex": {
