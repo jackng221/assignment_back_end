@@ -6,7 +6,7 @@ const can = require('../permissions/dogsPermission')
 const { validateDogEntry } = require('../controllers/validation')
 
 const prefix = '/api/v1/dogs'
-const router = new Router({ prefix: prefix });
+const router = Router({ prefix: prefix });
 
 // /
 router.get('/', getAllDogs);
