@@ -34,7 +34,7 @@ exports.searchDogs = async function searchDogs(type, fields, sfields, q) {
   var sql = ""
   if (type === "text") {
     q = q.toString();
-    sql = `SELECT ${fields} FROM dogs WHERE ${sfields} LIKE '%${q}%' `;
+    sql = `SELECT ${fields} FROM dogs WHERE ${sfields} ILIKE '%${q}%' `;
   }
   else {
     sql = `SELECT ${fields} FROM dogs WHERE ${sfields} = ${q} `;
