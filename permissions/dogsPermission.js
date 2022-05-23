@@ -5,7 +5,7 @@ const ac = new AccessControl();
 ac.grant('user').execute('read').on('dogs');
 // staff
 ac.grant('staff').execute('create').on('dogs');
-ac.grant('user').execute('read').on('dogs');
+ac.grant('staff').execute('read').on('dogs');
 ac.grant('staff').execute('update').on('dogs');
 ac.grant('staff').execute('delete').on('dogs');
 
