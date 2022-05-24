@@ -73,7 +73,7 @@ paths:
         content:
           application/json:
             schema:
-                $ref: ./dogsUpdate.json#/definitions/dogupdate
+                $ref: ./dogUpdate.json#/definitions/dogupdate
       responses:
         '200':
           description: Dog entry update successful.

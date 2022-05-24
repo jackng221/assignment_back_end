@@ -1,6 +1,17 @@
+/**
+* A module to provide SQL queries related to user entries
+* @module models/usersModel
+* @author Jack
+* @see helpers/database for middle functions to access database
+*/
+
 const db = require('../helpers/database')
 const bcrypt = require('bcrypt')
 
+/**
+* Generate SQL based on params and pass it on to create a user account.
+* @param {object} user data of the user to create. Apply staff role if signupcode is correct.
+*/
 exports.createUser = async function createUser(user) {
   user.password = await bcrypt.hash(user.password, 10)
   console.log(user.password);
@@ -32,17 +43,20 @@ exports.createUser = async function createUser(user) {
     return error
   }
 }
-//exports.getAllUsers = async function getAllUsers (limit=10, page=1) {
-exports.getAllUsers = async function getAllUsers() {
-  //const offset = (page - 1) * limit;
-  //const sql = "SELECT * FROM users LIMIT  ? OFFSET  ?;";
-  //const data = await db.run_read(sql, [limit, offset]);
 
+/**
+* Generate SQL and pass it on to get all user accounts.
+*/
+exports.getAllUsers = async function getAllUsers() {
   const sql = "SELECT * FROM users";
   const data = await db.run_read(sql);
   return data;
 }
 
+/**
+* Generate SQL based on params and pass it on to get a user account data.
+* @param {integer} id id of the user in the database.
+*/
 exports.getUserById = async function getUserById(id) {
   let sql = "SELECT * FROM users WHERE ID = ?"
   let values = [id]
@@ -50,6 +64,10 @@ exports.getUserById = async function getUserById(id) {
   return data
 }
 
+/**
+* Generate SQL based on params and pass it on to get a user account.
+* @param {string} username username of the user in the database.
+*/
 exports.findUserByUsername = async function findUserByUsername(username) {
   const sql = "SELECT * FROM users WHERE username = ?"
   let values = [username]
@@ -57,6 +75,10 @@ exports.findUserByUsername = async function findUserByUsername(username) {
   return user;
 }
 
+/**
+* Generate SQL based on params and pass it on to delete a user account.
+* @param {integer} id id of the user in the database.
+*/
 exports.deleteUserById = async function deleteUserById(id) {
   const sql = "DELETE FROM users WHERE ID = ?"
   let values = [id]
