@@ -2,28 +2,27 @@ const db = require('../helpers/database')
 const bcrypt = require('bcrypt')
 
 exports.createUser = async function createUser(user) {
-  let keys = Object.keys(user)
-  let values = Object.values(user)
+  user.password = await bcrypt.hash(user.password, 10)
+  console.log(user.password);
+
   let signupcode = "secretsignupcode"
   let role = "user"
+  if (user.signupcode === signupcode) {
+    role = "staff"
+  }
+  user["role"] = role
 
+  delete user.signupcode
+
+  let keys = Object.keys(user)
+  let values = Object.values(user)
   let parm = ''
+
+  keys = keys.join(',')
   for (i = 0; i < values.length; i++) {
     parm += '?,'
-    if (keys[i].valueOf() === "password") {
-        values[i] = await bcrypt.hash(values[i], 10)
-      console.log(`${i}  ${values[i]}`)
-    }
-    if (keys[i].valueOf() === "signupcode"){
-      if (values[i].valueOf() === signupcode){
-        role = "staff"
-      }
-    }
   }
-  keys = keys.join(',')
-  keys += ",role"
-  parm += '?'
-  values.push(role)
+  parm = parm.slice(0, -1)
 
   let sql = `INSERT INTO users (${keys}) VALUES (${parm})`
   try {
