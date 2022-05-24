@@ -34,6 +34,13 @@ paths:
       tags:
         - Dogs
       description: Create a dog entry.
+      requestBody:
+        description: All new dog data.
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: ./dog.json#/definitions/dog
       responses:
         '201':
           description: Dog entry creation successful.
@@ -60,6 +67,13 @@ paths:
       tags:
         - Dogs
       description: Update dog entry by id.
+      requestBody:
+        description: Updating dog data.
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: ./dogsUpdate.json#/definitions/dogupdate
       responses:
         '200':
           description: Dog entry update successful.
@@ -104,6 +118,13 @@ paths:
       tags:
         - Users
       description: Create a user with role.
+      requestBody:
+        description: All new user.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./user.json#/definitions/user
       responses:
         '201':
           description: User creation successful.
