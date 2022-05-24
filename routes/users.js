@@ -9,7 +9,6 @@ const prefix = '/api/v1/users'
 const router = Router({ prefix: prefix });
 
 // /
-//router.get('/', auth, getAll)
 router.get('/', auth, getAllUsers)
 router.post('/', bodyParser(), validateUser, createUser)
 // /id
@@ -19,7 +18,8 @@ router.del('/:id([0-9]{1,})', auth, deleteUserById)
 router.post('/login', auth, loginUser)
 
 async function loginUser(ctx) {
-  // return any details needed by the client
+  // authorization already handled by auth
+  // provide relevant info in response body
   const { id, username, role } = ctx.state.user
   const links = {
     self: `https://${ctx.host}${prefix}/${id}`
@@ -34,8 +34,7 @@ async function createUser(ctx) {
     ctx.status = 201
     ctx.body = result
   } else {
-    ctx.status = 201
-    ctx.body = "{}"
+    ctx.status = 400
   }
 }
 
@@ -47,6 +46,10 @@ async function getAllUsers(ctx, next) {
     let users = await model.getAllUsers()
     if (users.length) {
       ctx.body = users
+      ctx.status = 200
+    }
+    else {
+      ctx.status = 404
     }
   }
 }
@@ -61,6 +64,10 @@ async function getUserById(ctx) {
     let user = await model.getUserById(id)
     if (user.length) {
       ctx.body = user[0]
+      ctx.status = 200
+    }
+    else {
+      ctx.status = 404
     }
   }
 }
@@ -74,8 +81,11 @@ async function deleteUserById(ctx) {
     let id = ctx.params.id
     let result = await model.deleteUserById(id)
     if (result) {
-      ctx.status = 201
+      ctx.status = 200
       ctx.body = {message: `Deleted user with id ${id}`}
+    }
+    else {
+      ctx.status = 400
     }
   }
 }

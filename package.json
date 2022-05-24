@@ -31,6 +31,7 @@
     "mime-types": "^2.1.35",
     "passport-http": "^0.3.0",
     "pg": "^8.7.3",
+    "redoc": "^2.0.0-rc.70",
     "role-acl": "^4.5.4",
     "sequelize": "^6.19.2",
     "uuid": "^8.3.2"

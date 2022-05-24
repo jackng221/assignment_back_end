@@ -1,0 +1,175 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Basic shelter dog management API
+  description: A shelter dog management API for charity institution.
+  contact:
+    name: Jack Ng
+    email: jackng1233@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: 'https://assignmentbackend.jackng221.repl.co/api/v1'
+    description: Development server
+tags:
+  - name: Users
+    description: API endpoints for user management.
+  - name: Dogs
+    description: Access and perform CRUD operations on dog entries.
+  - name: Images
+    description: Upload and download of images for dogs.
+paths:
+  /dogs:
+    get:
+      tags:
+        - Dogs
+      description: Get all dogs data.
+      responses:
+        '200':
+          description: Dog entries received.
+        '404':
+          description: Dog entries not found.
+    post:
+      tags:
+        - Dogs
+      description: Create a dog entry.
+      responses:
+        '201':
+          description: Dog entry creation successful.
+        '403':
+          description: Dog entry creation unsuccessful.
+  /dogs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: Numeric id of the dog entry.
+    get:
+      tags:
+        - Dogs
+      description: Get dog data by id.
+      responses:
+        '200':
+          description: Dog data received.
+        '404':
+          description: Dog data not found.
+    put:
+      tags:
+        - Dogs
+      description: Update dog entry by id.
+      responses:
+        '200':
+          description: Dog entry update successful.
+        '403':
+          description: Action not authorized.
+        '404':
+          description: Dog entry not found.
+    delete:
+      tags:
+        - Dogs
+      description: Delete dog entry by id.
+      responses:
+        '200':
+          description: Dog entry deletion successful.
+        '403':
+          description: Action not authorized.
+        '404':
+          description: Dog entry not found.
+  /search:
+    get:
+      tags:
+        - Dogs
+      description: Search dog entries by parameters.
+      responses:
+        '200':
+          description: Searched dog data received.
+        '404':
+          description: Users data not found.
+  /users:
+    get:
+      tags:
+        - Users
+      description: Get all users data.
+      responses:
+        '200':
+          description: All users data received.
+        '403':
+          description: Action not authorized.
+        '404':
+          description: Users data not found.
+    post:
+      tags:
+        - Users
+      description: Create a user with role.
+      responses:
+        '201':
+          description: User creation successful.
+        '400':
+          description: User creation unsuccessful.
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: Numeric id of the user.
+    get:
+      tags:
+        - Users
+      description: Get user data by id.
+      responses:
+        '200':
+          description: User data received.
+        '403':
+          description: Action not authorized.
+        '404':
+          description: User data not found.
+    delete:
+      tags:
+        - Users
+      description: Delete user by id.
+      responses:
+        '200':
+          description: User deletion successful.
+        '403':
+          description: Action not authorized.
+        '400':
+          description: User deletion unsuccessful.
+  /login:
+    post:
+      tags:
+        - Users
+      description: Login with Basic Auth.
+  /images:
+    post:
+      tags:
+        - Images
+      description: Upload image.
+      responses:
+        '201':
+          description: Image upload successful.
+        '500':
+          description: Image upload unsuccessful.
+  /images/{uuid}:
+    parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: text
+        required: true
+        description: uuid of the image.
+    get:
+      tags:
+        - Images
+      description: Download image by uuid.
+      responses:
+        '200':
+          description: Image download successful.
+        '500':
+          description: Image download unsuccessful.
+        '404':
+          description: Image not found.

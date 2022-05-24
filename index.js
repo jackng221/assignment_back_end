@@ -12,6 +12,7 @@ app.use(cors());
 app.use(dogs.routes());
 app.use(users.routes());
 app.use(uploads.routes());
+app.use(static({dir:'docs', router: '/doc/'}) );
 
 let port = process.env.PORT || 10888;
 

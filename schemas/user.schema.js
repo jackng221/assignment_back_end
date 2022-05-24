@@ -15,8 +15,8 @@ module.exports = {
     },
     "signupcode": {
       "description": "Sign up code used to verify a staff in account creation; Generates a role",
-      "type": "string",
-    },
+      "type": "string"
+    }
   },
   "required": ["username", "password"]
 }

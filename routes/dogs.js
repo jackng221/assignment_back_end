@@ -69,32 +69,19 @@ async function searchDogs(ctx, next) {
   page = page < 1 ? 1 : page;
   let result = "";
   fields = fields.replace(/%/g, ", ");
-  // search by single field and field contents 
-  //need to validate q input
+  
   if (q != "")
     result = await model.searchDogs(type, fields, sfields, q)
   else
     result = await model.getAllDogs(limit, page);
 
-  // if (result.length) {
-  //   if (fields !== null) {
-  //     // first ensure the fields are contained in an array
-  //     // need this since a single field in the query is passed as a string
-  //     if (!Array.isArray(fields)) {
-  //       fields = [fields];
-  //     }
-  //     // then filter each row in the array of results
-  //     // by only including the specified fields
-  //     result = result.map(record => {
-  //       partial = {};
-  //       for (field of fields) {
-  //         partial[field] = record[field];
-  //       }
-  //       return partial;
-  //     });
-  //   }
-  ctx.body = result;
-  //}
+  if (result.length) {
+    ctx.body = result
+    ctx.status = 200
+  }
+  else {
+    ctx.status = 404
+  }
 }
 async function updateDogEntry(ctx) {
   const permission = can.update(ctx.state.user)
@@ -108,6 +95,9 @@ async function updateDogEntry(ctx) {
     if (result) {
       ctx.status = 200
       ctx.body = { message: `Dog with id ${id} updated` }
+    }
+    else {
+      ctx.status = 404
     }
   }
 }
@@ -123,6 +113,9 @@ async function deleteDogEntry(ctx) {
     if (result) {
       ctx.status = 200
       ctx.body = { message: `Dog with id ${id} deleted` }
+    }
+    else {
+      ctx.status = 404
     }
   }
 }

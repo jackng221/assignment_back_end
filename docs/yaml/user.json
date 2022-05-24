@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "/user",
+  "title": "User",
+  "description": "A user entry stored in the system",
+  "type": "object",
+  "properties": {
+    "username": {
+      "description": "Name of the user",
+      "type": "string"
+    },
+    "password": {
+      "description": "Hashed password of the user",
+      "type": "string"
+    },
+    "signupcode": {
+      "description": "Sign up code used to verify a staff in account creation; Generates a role",
+      "type": "string"
+    }
+  },
+  "required": ["username", "password"]
+}
