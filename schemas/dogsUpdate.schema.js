@@ -36,5 +36,5 @@ module.exports = {
       "type": "uri"
     }
   },
-  "required": ["name", "age", "weight", "sex", "breed", "location"]
+  "required": []
 }

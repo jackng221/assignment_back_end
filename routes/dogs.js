@@ -3,7 +3,7 @@ const bodyParser = require('koa-bodyparser');
 const model = require('../models/dogsModel')
 const auth = require('../controllers/auth')
 const can = require('../permissions/dogsPermission')
-const { validateDogEntry } = require('../controllers/validation')
+const { validateDogEntry, validateDogUpdate } = require('../controllers/validation')
 
 const prefix = '/api/v1/dogs'
 const router = Router({ prefix: prefix });
@@ -13,7 +13,7 @@ router.get('/', getAllDogs);
 router.post('/', auth, bodyParser(), validateDogEntry, createDogEntry)
 // /id
 router.get('/:id([0-9]{1,})', getDogEntry)
-router.put('/:id([0-9]{1,})', auth, bodyParser(), validateDogEntry, updateDogEntry)
+router.put('/:id([0-9]{1,})', auth, bodyParser(), validateDogUpdate, updateDogEntry)
 router.del('/:id([0-9]{1,})', auth, deleteDogEntry)
 // /search
 router.get('/search', searchDogs)
