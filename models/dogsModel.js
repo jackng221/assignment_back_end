@@ -39,7 +39,7 @@ exports.searchDogs = async function searchDogs(type, fields, sfields, q) {
   else {
     sql = `SELECT ${fields} FROM dogs WHERE ${sfields} = ${q} `;
     if (isNaN(q)) {
-      sql = `SELECT ${fields} FROM dogs WHERE ${sfields} = ${sfields} `;
+      sql = `SELECT NULL LIMIT 0 `;
     }
   }
   console.log(sql);
