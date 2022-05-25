@@ -46,5 +46,9 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ]
+  },
+  "scripts": {
+    "test": "jest --testTimeout=10000",
+    "test:watch": "jest --watch"
   }
 }

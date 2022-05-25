@@ -69,6 +69,8 @@ async function searchDogs(ctx, next) {
   page = page < 1 ? 1 : page;
   let result = "";
   fields = fields.replace(/%/g, ", ");
+  sfields = sfields.replace(/%/g, ", ");
+  q = q.replace(/%/g, ", ");
   
   if (q != "")
     result = await model.searchDogs(type, fields, sfields, q)
