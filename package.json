@@ -21,7 +21,6 @@
     "@koa/cors": "^3.3.0",
     "bcrypt": "^5.0.1",
     "fs": "^0.0.1-security",
-    "jsdoc": "^3.6.10",
     "jsonschema": "^1.4.1",
     "koa": "^2.13.4",
     "koa-body": "^4.2.0",
@@ -32,9 +31,20 @@
     "mime-types": "^2.1.35",
     "passport-http": "^0.3.0",
     "pg": "^8.7.3",
-    "redoc": "^2.0.0-rc.70",
     "role-acl": "^4.5.4",
     "sequelize": "^6.19.2",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0",
+    "jsdoc": "^3.6.10",
+    "redoc": "^2.0.0-rc.70",
+    "supertest": "^6.2.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }

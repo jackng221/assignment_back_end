@@ -7,7 +7,7 @@
 
 const {Validator, ValidationError} = require('jsonschema');
 const dogSchema = require('../schemas/dog.schema.js');
-const dogUpdateSchema = require('../schemas/dogsUpdate.schema.js');
+const dogUpdateSchema = require('../schemas/dogUpdate.schema.js');
 const userSchema = require('../schemas/user.schema.js');
 const v = new Validator();
 
